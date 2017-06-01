@@ -1,6 +1,6 @@
 object Frm_UserLogin: TFrm_UserLogin
-  Left = 0
-  Top = 0
+  Left = 732
+  Top = 447
   AutoSize = True
   BorderIcons = []
   BorderStyle = bsSingle
@@ -14,6 +14,7 @@ object Frm_UserLogin: TFrm_UserLogin
   Font.Name = 'Tahoma'
   Font.Style = []
   OldCreateOrder = False
+  Position = poDesigned
   OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13
@@ -83,7 +84,7 @@ object Frm_UserLogin: TFrm_UserLogin
       Font.Style = [fsBold, fsItalic]
       ParentFont = False
       TabOrder = 0
-      Text = '948380'
+      Text = '98804200'
     end
     object Edit_Password: TEdit
       Left = 136

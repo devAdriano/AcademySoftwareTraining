@@ -37,14 +37,24 @@ type
     DBE_Objective: TDBEdit;
     Label13: TLabel;
     DBE_Complement: TDBEdit;
-    DBNavigator1: TDBNavigator;
-    Label15: TLabel;
-    Btn_UserRegistration: TButton;
+    DBN_StudentRegistration: TDBNavigator;
     DBG_Student: TDBGrid;
-    DBLC_SystemUser: TDBLookupComboBox;
-    procedure DBNavigator1Click(Sender: TObject; Button: TNavigateBtn);
+    GB_SystemUser: TGroupBox;
+    DBLC_UserPermission: TDBLookupComboBox;
+    Label15: TLabel;
+    Label14: TLabel;
+    DBE_SystemUserID: TDBEdit;
+    Label16: TLabel;
+    Label17: TLabel;
+    Edit_PasswordConfirmation: TEdit;
+    Edit_Password: TEdit;
+    DBEdi_ShowBirthDate: TDBEdit;
+    procedure DBN_StudentRegistrationClick(Sender: TObject; Button: TNavigateBtn);
     procedure DTP_StudentBirthDateExit(Sender: TObject);
     procedure FormShow(Sender: TObject);
+    procedure DBE_StudentIDExit(Sender: TObject);
+    procedure Edit_PasswordConfirmationExit(Sender: TObject);
+    procedure DBLC_UserPermissionExit(Sender: TObject);
   private
     { Private declarations }
   public
@@ -60,16 +70,65 @@ implementation
 
 uses DataModule;
 
-procedure TFrm_StudentRegistration.DBNavigator1Click(Sender: TObject;
+procedure TFrm_StudentRegistration.DBE_StudentIDExit(Sender: TObject);
+begin
+
+    with DM_DBConnection.ADOQ_Login do
+    begin
+
+      SQL.BeginUpdate;
+      SQL.Text := 'SELECT * FROM LOGIN WHERE UserRG = :IDUser';
+      SQL.EndUpdate;
+
+      Close;
+      Parameters.ParamByName('IDUser').Value := DBE_StudentID.Text;
+      Open;
+
+    end;//with DM_DBConnection.ADOQ_Login
+
+    if(DM_DBConnection.ADOQ_Login.RecordCount > 0) then
+    begin
+
+        ShowMessage('This user is already registred on system');
+
+    end//if
+    else
+    begin
+
+        DM_DBConnection.ADOT_Login.Append;
+        DBE_SystemUserID.Text := DBE_StudentID.Text;
+
+    end;//else
+
+end;
+
+procedure TFrm_StudentRegistration.DBLC_UserPermissionExit(Sender: TObject);
+begin
+
+      DM_DBConnection.ADOT_Login.FieldByName('Password').AsString := Edit_Password.Text;
+      DM_DBConnection.ADOT_Login.Post;
+      DM_DBConnection.ADOT_Student.FieldValues['idLogin'] := DM_DBConnection.ADOT_Login.FieldByName('IdLogin').AsInteger;
+      DBN_StudentRegistration.Controls[Ord(nbPost)].Enabled := true;
+
+end;
+
+procedure TFrm_StudentRegistration.DBN_StudentRegistrationClick(Sender: TObject;
   Button: TNavigateBtn);
 begin
 
     if Button = nbInsert then
     begin
 
+        DBG_Student.Enabled := false;
+
         GB_StudentPersonal.Enabled := true;
         GB_StudentAddress.Enabled := true;
-        DBLC_SystemUser.Enabled := true;
+        GB_SystemUser.Enabled := true;
+        DBEdi_ShowBirthDate.Visible := false;
+
+        DBN_StudentRegistration.Controls[Ord(nbPost)].Enabled := false;
+
+        DBE_StudentName.SetFocus;
 
     end;//If insert
 
@@ -78,7 +137,9 @@ begin
 
         GB_StudentPersonal.Enabled := true;
         GB_StudentAddress.Enabled := true;
-        DBLC_SystemUser.Enabled := true;
+        GB_SystemUser.Enabled := true;
+
+        DBEdi_ShowBirthDate.Visible := false;
 
     end;//If edit
 
@@ -87,7 +148,9 @@ begin
 
         GB_StudentPersonal.Enabled := false;
         GB_StudentAddress.Enabled := false;
-        DBLC_SystemUser.Enabled := false;
+        GB_SystemUser.Enabled := false;
+
+        DBEdi_ShowBirthDate.Visible := true;
 
     end;//If cancel
 
@@ -96,7 +159,9 @@ begin
 
         GB_StudentPersonal.Enabled := false;
         GB_StudentAddress.Enabled := false;
-        DBLC_SystemUser.Enabled := false;
+        GB_SystemUser.Enabled := false;
+
+        DBEdi_ShowBirthDate.Visible := true;
 
     end;//If post
 
@@ -109,12 +174,37 @@ begin
 
 end;
 
+procedure TFrm_StudentRegistration.Edit_PasswordConfirmationExit(
+  Sender: TObject);
+begin
+
+    if(Edit_Password.Text = Edit_PasswordConfirmation.Text) then
+    begin
+
+      DBLC_UserPermission.Enabled := true;
+
+      DBLC_UserPermission.SetFocus;
+
+    end//if
+    else
+    begin
+
+      ShowMessage('The cconfirmation password is different, please re-insert your password');
+      Edit_PasswordConfirmation.Text := '';
+      Edit_Password.SetFocus;
+
+    end;//else
+
+
+end;
+
 procedure TFrm_StudentRegistration.FormShow(Sender: TObject);
 begin
 
     DM_DBConnection.ADOT_Student.Active := true;
     DM_DBConnection.ADOT_Coach.Active := true;
     DM_DBConnection.ADOT_Login.Active := true;
+    DM_DBConnection.ADOT_AccessPermission.Active := true;
 
 end;
 

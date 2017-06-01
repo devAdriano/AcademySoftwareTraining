@@ -1,8 +1,8 @@
 object Frm_CoachRegistration: TFrm_CoachRegistration
-  Left = 0
-  Top = 0
+  Left = 480
+  Top = 150
   Caption = 'Coach Registration'
-  ClientHeight = 865
+  ClientHeight = 956
   ClientWidth = 835
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -11,27 +11,15 @@ object Frm_CoachRegistration: TFrm_CoachRegistration
   Font.Name = 'Tahoma'
   Font.Style = []
   OldCreateOrder = False
+  Position = poDesigned
   OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13
-  object Label18: TLabel
-    Left = 98
-    Top = 839
-    Width = 125
-    Height = 23
-    Caption = 'System User '
-    Font.Charset = DEFAULT_CHARSET
-    Font.Color = clWindowText
-    Font.Height = -19
-    Font.Name = 'Tahoma'
-    Font.Style = [fsBold, fsItalic]
-    ParentFont = False
-  end
   object PC_Coach: TPageControl
     Left = 0
     Top = 0
     Width = 833
-    Height = 833
+    Height = 948
     ActivePage = TabSheet1
     TabOrder = 0
     object TabSheet1: TTabSheet
@@ -133,7 +121,7 @@ object Frm_CoachRegistration: TFrm_CoachRegistration
           TabOrder = 1
           OnExit = DTP_CoachBirthDateExit
         end
-        object DBE_CoachRG: TDBEdit
+        object DBE_CoachID: TDBEdit
           Left = 414
           Top = 85
           Width = 117
@@ -147,6 +135,7 @@ object Frm_CoachRegistration: TFrm_CoachRegistration
           Font.Style = [fsItalic]
           ParentFont = False
           TabOrder = 2
+          OnExit = DBE_CoachIDExit
         end
         object DBE_CoachCPF: TDBEdit
           Left = 592
@@ -163,16 +152,26 @@ object Frm_CoachRegistration: TFrm_CoachRegistration
           ParentFont = False
           TabOrder = 3
         end
+        object DBEdi_ShowBirthDate: TDBEdit
+          Left = 105
+          Top = 82
+          Width = 186
+          Height = 27
+          DataField = 'BirthDate'
+          DataSource = DM_DBConnection.DS_Coach
+          TabOrder = 4
+        end
       end
       object DBN_Coach: TDBNavigator
         Left = 753
-        Top = 15
+        Top = 187
         Width = 64
         Height = 440
         DataSource = DM_DBConnection.DS_Coach
         Kind = dbnVertical
         TabOrder = 1
         OnClick = DBN_CoachClick
+        OnExit = DBN_CoachExit
       end
       object GB_CoachAddress: TGroupBox
         Left = 10
@@ -422,7 +421,6 @@ object Frm_CoachRegistration: TFrm_CoachRegistration
           Font.Name = 'Tahoma'
           Font.Style = [fsBold, fsItalic]
           ParentFont = False
-          Visible = False
         end
         object Label19: TLabel
           Left = 293
@@ -521,12 +519,31 @@ object Frm_CoachRegistration: TFrm_CoachRegistration
           TabOrder = 5
           OnClick = CB_DemissionCheckClick
         end
+        object DBEdi_ShowAdmissionDate: TDBEdit
+          Left = 146
+          Top = 72
+          Width = 186
+          Height = 27
+          DataField = 'AdmissionDate'
+          DataSource = DM_DBConnection.DS_Coach
+          TabOrder = 6
+        end
+        object DBEdi_ShowDemissionDate: TDBEdit
+          Left = 473
+          Top = 72
+          Width = 186
+          Height = 27
+          DataField = 'DemissionDate'
+          DataSource = DM_DBConnection.DS_Coach
+          TabOrder = 7
+          Visible = False
+        end
       end
       object DBG_Coach: TDBGrid
-        Left = 13
-        Top = 504
-        Width = 804
-        Height = 297
+        Left = 10
+        Top = 734
+        Width = 812
+        Height = 183
         DataSource = DM_DBConnection.DS_Coach
         ReadOnly = True
         TabOrder = 4
@@ -536,14 +553,123 @@ object Frm_CoachRegistration: TFrm_CoachRegistration
         TitleFont.Name = 'Tahoma'
         TitleFont.Style = []
       end
+      object GB_SystemUser: TGroupBox
+        Left = 10
+        Top = 504
+        Width = 737
+        Height = 224
+        Caption = 'System User '
+        Enabled = False
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -16
+        Font.Name = 'Tahoma'
+        Font.Style = [fsBold, fsItalic]
+        ParentFont = False
+        TabOrder = 5
+        object Label14: TLabel
+          Left = 76
+          Top = 198
+          Width = 160
+          Height = 23
+          Caption = 'User Permission '
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -19
+          Font.Name = 'Tahoma'
+          Font.Style = [fsBold, fsItalic]
+          ParentFont = False
+        end
+        object Label18: TLabel
+          Left = 341
+          Top = 15
+          Width = 71
+          Height = 16
+          Caption = 'ID Number '
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -13
+          Font.Name = 'Tahoma'
+          Font.Style = [fsBold, fsItalic]
+          ParentFont = False
+        end
+        object Label20: TLabel
+          Left = 341
+          Top = 70
+          Width = 67
+          Height = 16
+          Caption = 'Password '
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -13
+          Font.Name = 'Tahoma'
+          Font.Style = [fsBold, fsItalic]
+          ParentFont = False
+        end
+        object Label21: TLabel
+          Left = 305
+          Top = 125
+          Width = 120
+          Height = 16
+          Caption = 'Confirm Password '
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -13
+          Font.Name = 'Tahoma'
+          Font.Style = [fsBold, fsItalic]
+          ParentFont = False
+        end
+        object DBLC_UserPermission: TDBLookupComboBox
+          Left = 242
+          Top = 194
+          Width = 360
+          Height = 27
+          DataField = 'IdAcessPermission'
+          DataSource = DM_DBConnection.DS_Login
+          KeyField = 'IdAcessPermission'
+          ListField = 'Description'
+          ListSource = DM_DBConnection.DS_AccessPermission
+          TabOrder = 3
+          OnExit = DBLC_UserPermissionExit
+        end
+        object DBE_SystemUserID: TDBEdit
+          Left = 269
+          Top = 37
+          Width = 219
+          Height = 27
+          DataField = 'UserRG'
+          DataSource = DM_DBConnection.DS_Login
+          Enabled = False
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -16
+          Font.Name = 'Tahoma'
+          Font.Style = [fsItalic]
+          ParentFont = False
+          TabOrder = 0
+        end
+        object Edit_PasswordConfirmation: TEdit
+          Left = 269
+          Top = 147
+          Width = 219
+          Height = 27
+          PasswordChar = '*'
+          TabOrder = 2
+          OnExit = Edit_PasswordConfirmationExit
+        end
+        object Edit_Password: TEdit
+          Left = 269
+          Top = 92
+          Width = 219
+          Height = 27
+          PasswordChar = '*'
+          TabOrder = 1
+        end
+      end
     end
     object TabSheet2: TTabSheet
       Caption = 'Work Schedule'
       ImageIndex = 1
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object Label15: TLabel
         Left = 8
         Top = 10
@@ -721,7 +847,7 @@ object Frm_CoachRegistration: TFrm_CoachRegistration
         Left = 750
         Top = 3
         Width = 72
-        Height = 300
+        Height = 320
         DataSource = DM_DBConnection.DS_WorkSchedule
         Kind = dbnVertical
         TabOrder = 3
@@ -731,7 +857,7 @@ object Frm_CoachRegistration: TFrm_CoachRegistration
         Left = 8
         Top = 334
         Width = 814
-        Height = 468
+        Height = 583
         DataSource = DM_DBConnection.DS_WorkSchedule
         ReadOnly = True
         TabOrder = 4
@@ -742,27 +868,5 @@ object Frm_CoachRegistration: TFrm_CoachRegistration
         TitleFont.Style = []
       end
     end
-  end
-  object Btn_UserRegistration: TButton
-    Left = 592
-    Top = 839
-    Width = 123
-    Height = 25
-    Caption = 'User Registration'
-    Font.Charset = DEFAULT_CHARSET
-    Font.Color = clWindowText
-    Font.Height = -11
-    Font.Name = 'Tahoma'
-    Font.Style = [fsBold, fsItalic]
-    ParentFont = False
-    TabOrder = 1
-  end
-  object DBLC_SystemUser: TDBLookupComboBox
-    Left = 229
-    Top = 839
-    Width = 357
-    Height = 21
-    DataSource = DM_DBConnection.DS_Coach
-    TabOrder = 2
   end
 end

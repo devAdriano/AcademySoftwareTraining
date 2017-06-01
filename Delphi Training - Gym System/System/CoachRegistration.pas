@@ -19,7 +19,7 @@ type
     Label4: TLabel;
     DBE_CoachName: TDBEdit;
     DTP_CoachBirthDate: TDateTimePicker;
-    DBE_CoachRG: TDBEdit;
+    DBE_CoachID: TDBEdit;
     DBE_CoachCPF: TDBEdit;
     DBN_Coach: TDBNavigator;
     GB_CoachAddress: TGroupBox;
@@ -64,12 +64,21 @@ type
     Btn_AllDays: TButton;
     DBN_WorkSchedule: TDBNavigator;
     DBG_WorkSchedule: TDBGrid;
-    Label18: TLabel;
-    Btn_UserRegistration: TButton;
-    DBLC_SystemUser: TDBLookupComboBox;
     Label19: TLabel;
     DBLC_WorkSchedule: TDBLookupComboBox;
     CB_DemissionCheck: TCheckBox;
+    GB_SystemUser: TGroupBox;
+    Label14: TLabel;
+    Label18: TLabel;
+    Label20: TLabel;
+    Label21: TLabel;
+    DBLC_UserPermission: TDBLookupComboBox;
+    DBE_SystemUserID: TDBEdit;
+    Edit_PasswordConfirmation: TEdit;
+    Edit_Password: TEdit;
+    DBEdi_ShowBirthDate: TDBEdit;
+    DBEdi_ShowAdmissionDate: TDBEdit;
+    DBEdi_ShowDemissionDate: TDBEdit;
     procedure FormShow(Sender: TObject);
     procedure DBN_WorkScheduleClick(Sender: TObject; Button: TNavigateBtn);
     procedure Btn_WeekDaysClick(Sender: TObject);
@@ -79,6 +88,10 @@ type
     procedure DTP_AdmissionDateExit(Sender: TObject);
     procedure DTP_ResignationDateExit(Sender: TObject);
     procedure CB_DemissionCheckClick(Sender: TObject);
+    procedure DBE_CoachIDExit(Sender: TObject);
+    procedure Edit_PasswordConfirmationExit(Sender: TObject);
+    procedure DBLC_UserPermissionExit(Sender: TObject);
+    procedure DBN_CoachExit(Sender: TObject);
   private
     { Private declarations }
   public
@@ -158,8 +171,53 @@ begin
 
 end;
 
+procedure TFrm_CoachRegistration.DBE_CoachIDExit(Sender: TObject);
+begin
+
+  with DM_DBConnection.ADOQ_Login do
+    begin
+
+      SQL.BeginUpdate;
+      SQL.Text := 'SELECT * FROM LOGIN WHERE UserRG = :IDUser';
+      SQL.EndUpdate;
+
+      Close;
+      Parameters.ParamByName('IDUser').Value := DBE_CoachID.Text;
+      Open;
+
+    end;//with DM_DBConnection.ADOQ_Login
+
+    if(DM_DBConnection.ADOQ_Login.RecordCount > 0) then
+    begin
+
+        ShowMessage('This user is already registred on system');
+
+    end//if
+    else
+    begin
+
+        DM_DBConnection.ADOT_Login.Append;
+        DBE_SystemUserID.Text := DBE_CoachID.Text;
+
+    end;//else
+
+end;
+
+procedure TFrm_CoachRegistration.DBLC_UserPermissionExit(Sender: TObject);
+begin
+
+      DM_DBConnection.ADOT_Login.FieldByName('Password').AsString := Edit_Password.Text;
+      DM_DBConnection.ADOT_Login.Post;
+      DBN_Coach.Controls[Ord(nbPost)].Enabled := true;
+
+end;
+
 procedure TFrm_CoachRegistration.DBN_CoachClick(Sender: TObject;
   Button: TNavigateBtn);
+var
+
+  edit : String;
+
 begin
 
   if Button = nbInsert then
@@ -168,21 +226,42 @@ begin
        GB_CoachPersonal.Enabled := true;
        GB_CoachAddress.Enabled := true;
        GB_CoachLabor.Enabled := true;
+       GB_SystemUser.Enabled := true;
+
+       DBEdi_ShowBirthDate.Visible := false;
+       DBEdi_ShowAdmissionDate.Visible := false;
 
        DM_DBConnection.ADOT_CoachHasSchedule.Active := true;
        DM_DBConnection.ADOT_CoachHasSchedule.Append;
+
+       DBN_Coach.Controls[Ord(nbPost)].Enabled := true;
+       DBE_CoachName.SetFocus;
+
 
   end;//if Insert Click
 
   if Button = nbPost then
   begin
 
-      DM_DBConnection.ADOT_CoachHasSchedule.FieldValues['idCoach'] := DM_DBConnection.ADOT_Coach.FieldByName('idCoach').AsInteger;
-      DM_DBConnection.ADOT_CoachHasSchedule.Post;
+      if(edit = 'false') then
+      begin
+
+        DM_DBConnection.ADOT_CoachHasSchedule.FieldValues['idCoach'] := DM_DBConnection.ADOT_Coach.FieldByName('idCoach').AsInteger;
+        DM_DBConnection.ADOT_CoachHasSchedule.Post;
+
+      end;// if edit
 
       GB_CoachPersonal.Enabled := false;
       GB_CoachAddress.Enabled := false;
       GB_CoachLabor.Enabled := false;
+      GB_SystemUser.Enabled := false;
+      DBEdi_ShowBirthDate.Visible := true;
+      DBEdi_ShowAdmissionDate.Visible := true;
+
+      DM_DBConnection.ADOT_Coach.Refresh;
+      DM_DBConnection.ADOT_CoachHasSchedule.Refresh;
+
+      edit := 'false';
 
   end;//if Post Click
 
@@ -192,6 +271,11 @@ begin
       GB_CoachPersonal.Enabled := true;
       GB_CoachAddress.Enabled := true;
       GB_CoachLabor.Enabled := true;
+      GB_SystemUser.Enabled := true;
+      DBEdi_ShowBirthDate.Visible := false;
+      DBEdi_ShowAdmissionDate.Visible := false;
+
+      edit := 'true';
 
   end;
   //If Edit Click
@@ -202,16 +286,98 @@ begin
     GB_CoachPersonal.Enabled := false;
     GB_CoachAddress.Enabled := false;
     GB_CoachLabor.Enabled := false;
+    GB_SystemUser.Enabled := false;
 
     lbl_ResignationText.Visible := false;
     DTP_ResignationDate.Visible := false;
     CB_DemissionCheck.Visible := true;
     CB_DemissionCheck.Checked := false;
+    DBEdi_ShowBirthDate.Visible := true;
+    DBEdi_ShowAdmissionDate.Visible := true;
 
-  end;
+    edit := 'false';
+
+  end;//if Cancel
+
+  if Button = nbNext then
+  begin
+
+    if(DM_DBConnection.ADOT_Coach.FieldValues['DemissionDate'] <> null) then
+    begin
+
+       DBEdi_ShowDemissionDate.Visible := true;
+
+    end//if
+    else
+    begin
+
+      DBEdi_ShowDemissionDate.Visible := false;
+
+    end;//else
+
+  end;//if Next
+
+  if Button = nbPrior then
+  begin
+
+    if(DM_DBConnection.ADOT_Coach.FieldValues['DemissionDate'] <> null) then
+    begin
+
+       DBEdi_ShowDemissionDate.Visible := true;
+
+    end//if
+    else
+    begin
+
+      DBEdi_ShowDemissionDate.Visible := false;
+
+    end;//else
+
+  end;//if Pior
+
+  if Button = nbFirst then
+  begin
+
+    if(DM_DBConnection.ADOT_Coach.FieldValues['DemissionDate'] <> null) then
+    begin
+
+       DBEdi_ShowDemissionDate.Visible := true;
+
+    end//if
+    else
+    begin
+
+      DBEdi_ShowDemissionDate.Visible := false;
+
+    end;//else
+
+  end;//if First
+
+  if Button = nbLast then
+  begin
+
+    if(DM_DBConnection.ADOT_Coach.FieldValues['DemissionDate'] <> null) then
+    begin
+
+       DBEdi_ShowDemissionDate.Visible := true;
+
+    end//if
+    else
+    begin
+
+      DBEdi_ShowDemissionDate.Visible := false;
+
+    end;//else
+
+  end;//if Last
 
 
-end;//DBNavigator Coach
+end;procedure TFrm_CoachRegistration.DBN_CoachExit(Sender: TObject);
+begin
+
+end;
+
+//DBNavigator Coach
 
 procedure TFrm_CoachRegistration.DBN_WorkScheduleClick(Sender: TObject;
   Button: TNavigateBtn);
@@ -294,12 +460,53 @@ begin
 
 end;
 
+procedure TFrm_CoachRegistration.Edit_PasswordConfirmationExit(Sender: TObject);
+begin
+
+  if(Edit_Password.Text = Edit_PasswordConfirmation.Text) then
+    begin
+
+      DBLC_UserPermission.Enabled := true;
+
+      DBLC_UserPermission.SetFocus;
+
+    end//if
+    else
+    begin
+
+      ShowMessage('The cconfirmation password is different, please re-insert your password');
+      Edit_PasswordConfirmation.Text := '';
+      Edit_Password.SetFocus;
+
+    end;//else
+
+end;
+
 procedure TFrm_CoachRegistration.FormShow(Sender: TObject);
 begin
 
   DM_DBConnection.ADOT_WorkSchedule.Active := true;
   DM_DBConnection.ADOT_Coach.Active := true;
   DM_DBConnection.ADOT_CoachHasSchedule.Active := true;
+  DM_DBConnection.ADOT_Login.Active := true;
+  DM_DBConnection.ADOT_AccessPermission.Active := true;
+  DM_DBConnection.ADOQ_Login.Active := true;
+
+
+    if(DM_DBConnection.ADOT_Coach.FieldValues['DemissionDate'] <> null) then
+    begin
+
+       DBEdi_ShowDemissionDate.Visible := true;
+
+    end//if
+    else
+    begin
+
+      DBEdi_ShowDemissionDate.Visible := false;
+
+    end;//else
+
+
 
 end;
 

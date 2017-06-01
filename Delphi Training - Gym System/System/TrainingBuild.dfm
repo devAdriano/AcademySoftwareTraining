@@ -59,6 +59,7 @@ object Frm_BuildTraining: TFrm_BuildTraining
       Top = 43
       Width = 191
       Height = 24
+      Enabled = False
       TabOrder = 1
       Text = 'Edit_CoachTrainingBuilder'
     end
@@ -395,15 +396,33 @@ object Frm_BuildTraining: TFrm_BuildTraining
           Time = 42864.477766377310000000
           TabOrder = 0
         end
-      end
-      object DTP_ChallengeStart: TDateTimePicker
-        Left = 84
-        Top = 94
-        Width = 104
-        Height = 21
-        Date = 42864.477766377310000000
-        Time = 42864.477766377310000000
-        TabOrder = 2
+        object DBEdi_ShowChallengeEnd: TDBEdit
+          Left = 241
+          Top = 46
+          Width = 121
+          Height = 24
+          DataField = 'CEndDate'
+          DataSource = DM_DBConnection.DS_Challenge
+          TabOrder = 1
+        end
+        object DTP_ChallengeStart: TDateTimePicker
+          Left = 81
+          Top = 46
+          Width = 104
+          Height = 21
+          Date = 42864.477766377310000000
+          Time = 42864.477766377310000000
+          TabOrder = 2
+        end
+        object DBEdi_ShowChallengeStart: TDBEdit
+          Left = 77
+          Top = 46
+          Width = 121
+          Height = 24
+          DataField = 'CStartDate'
+          DataSource = DM_DBConnection.DS_Challenge
+          TabOrder = 3
+        end
       end
       object GroupBox3: TGroupBox
         Left = 3
@@ -417,7 +436,7 @@ object Frm_BuildTraining: TFrm_BuildTraining
         Font.Name = 'Tahoma'
         Font.Style = [fsBold, fsItalic]
         ParentFont = False
-        TabOrder = 3
+        TabOrder = 2
         object Label15: TLabel
           Left = 32
           Top = 32
@@ -466,7 +485,7 @@ object Frm_BuildTraining: TFrm_BuildTraining
             '9'
             '10')
         end
-        object DBEdit1: TDBEdit
+        object DBEdi_CRepetitions: TDBEdit
           Left = 136
           Top = 54
           Width = 49
@@ -475,7 +494,7 @@ object Frm_BuildTraining: TFrm_BuildTraining
           DataSource = DM_DBConnection.DS_Challenge
           TabOrder = 1
         end
-        object DBEdit2: TDBEdit
+        object DBEdi_CWeight: TDBEdit
           Left = 241
           Top = 54
           Width = 49
@@ -484,7 +503,7 @@ object Frm_BuildTraining: TFrm_BuildTraining
           DataSource = DM_DBConnection.DS_Challenge
           TabOrder = 2
         end
-        object DBEdit3: TDBEdit
+        object DBEdi_CDistance: TDBEdit
           Left = 344
           Top = 54
           Width = 49
@@ -500,7 +519,7 @@ object Frm_BuildTraining: TFrm_BuildTraining
         Width = 663
         Height = 315
         DataSource = DM_DBConnection.DS_StudentChallenges
-        TabOrder = 4
+        TabOrder = 3
         TitleFont.Charset = DEFAULT_CHARSET
         TitleFont.Color = clWindowText
         TitleFont.Height = -11
@@ -515,7 +534,7 @@ object Frm_BuildTraining: TFrm_BuildTraining
         Height = 350
         DataSource = DM_DBConnection.DS_Challenge
         Kind = dbnVertical
-        TabOrder = 5
+        TabOrder = 4
         Visible = False
         OnClick = DBN_ChallengeControlClick
       end
@@ -525,7 +544,7 @@ object Frm_BuildTraining: TFrm_BuildTraining
         Width = 130
         Height = 47
         Caption = 'Prove Challenge'
-        TabOrder = 6
+        TabOrder = 5
         OnClick = Btn_ProveChallengeClick
       end
       object Btn_PrevChallenge: TButton
@@ -534,7 +553,7 @@ object Frm_BuildTraining: TFrm_BuildTraining
         Width = 130
         Height = 47
         Caption = 'Previous Challenge'
-        TabOrder = 7
+        TabOrder = 6
         OnClick = Btn_PrevChallengeClick
       end
       object Btn_NextChallenge: TButton
@@ -543,7 +562,7 @@ object Frm_BuildTraining: TFrm_BuildTraining
         Width = 130
         Height = 47
         Caption = 'Next Challenge'
-        TabOrder = 8
+        TabOrder = 7
         OnClick = Btn_NextChallengeClick
       end
       object DBM_Obs: TDBMemo
@@ -553,7 +572,7 @@ object Frm_BuildTraining: TFrm_BuildTraining
         Height = 143
         DataField = 'Obs'
         DataSource = DM_DBConnection.DS_Challenge
-        TabOrder = 9
+        TabOrder = 8
       end
     end
   end

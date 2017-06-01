@@ -44,16 +44,15 @@ type
     Label13: TLabel;
     Label14: TLabel;
     DateTimePicker1: TDateTimePicker;
-    DTP_ChallengeStart: TDateTimePicker;
     GroupBox3: TGroupBox;
     Label15: TLabel;
     Label16: TLabel;
     Label17: TLabel;
     Label18: TLabel;
     ComboBox1: TComboBox;
-    DBEdit1: TDBEdit;
-    DBEdit2: TDBEdit;
-    DBEdit3: TDBEdit;
+    DBEdi_CRepetitions: TDBEdit;
+    DBEdi_CWeight: TDBEdit;
+    DBEdi_CDistance: TDBEdit;
     DBG_StudentChallenges: TDBGrid;
     DBN_ChallengeControl: TDBNavigator;
     Btn_ProveChallenge: TButton;
@@ -65,6 +64,9 @@ type
     Label19: TLabel;
     Edit_CoachTrainingBuilder: TEdit;
     DBM_Obs: TDBMemo;
+    DBEdi_ShowChallengeEnd: TDBEdit;
+    DTP_ChallengeStart: TDateTimePicker;
+    DBEdi_ShowChallengeStart: TDBEdit;
     procedure FormShow(Sender: TObject);
     procedure DBN_TrainingControlClick(Sender: TObject; Button: TNavigateBtn);
     procedure CB_EditOrderClick(Sender: TObject);
@@ -223,6 +225,9 @@ begin
     if Button = nbInsert then
     begin
 
+      DBEdi_ShowChallengeStart.Visible := false;
+      DBEdi_ShowChallengeEnd.Visible := false;
+
       DM_DBConnection.ADOT_Challenge.FieldValues['IdTraining'] := DM_DBConnection.ADOT_Training.FieldByName('IdTraining').AsInteger;
       DM_DBConnection.ADOT_Challenge.FieldValues['CStartDate'] := DTP_ChallengeStart.Date;
       DM_DBConnection.ADOT_Challenge.FieldValues['CEndDate'] := DTP_ChallengeStart.Date;
@@ -238,18 +243,24 @@ begin
       DM_DBConnection.ADOT_StudentHasTraining.FieldValues['IdChallenge'] := DM_DBConnection.ADOT_Challenge.FieldByName('IdChallenge').AsInteger;
       DM_DBConnection.ADOT_StudentHasTraining.Post;
 
+      DBEdi_ShowChallengeStart.Visible := true;
+      DBEdi_ShowChallengeEnd.Visible := true;
+
     end; //if Post
 
     if Button = nbCancel then
     begin
 
+      DBEdi_ShowChallengeStart.Visible := true;
+      DBEdi_ShowChallengeEnd.Visible := true;
 
     end; //if Cancel
 
     if Button = nbEdit then
     begin
 
-
+      DBEdi_ShowChallengeStart.Visible := false;
+      DBEdi_ShowChallengeEnd.Visible := false;
 
     end; //if Edit
 

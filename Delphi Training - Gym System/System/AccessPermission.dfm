@@ -1,6 +1,6 @@
 object Frm_AccessPermission: TFrm_AccessPermission
-  Left = 0
-  Top = 0
+  Left = 713
+  Top = 366
   Caption = 'User Access Permission'
   ClientHeight = 518
   ClientWidth = 389
@@ -11,6 +11,7 @@ object Frm_AccessPermission: TFrm_AccessPermission
   Font.Name = 'Tahoma'
   Font.Style = []
   OldCreateOrder = False
+  Position = poDesigned
   OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13
@@ -50,6 +51,8 @@ object Frm_AccessPermission: TFrm_AccessPermission
       DataField = 'CoachRegistration'
       DataSource = DM_DBConnection.DS_AccessPermission
       TabOrder = 0
+      ValueChecked = 'T'
+      ValueUnchecked = 'F'
     end
     object DBCB_StudentDataSheet: TDBCheckBox
       Left = 24
@@ -60,6 +63,8 @@ object Frm_AccessPermission: TFrm_AccessPermission
       DataField = 'StudentTrainingDataSheet'
       DataSource = DM_DBConnection.DS_AccessPermission
       TabOrder = 1
+      ValueChecked = 'T'
+      ValueUnchecked = 'F'
     end
     object DBCB_CoachBuidDataSheet: TDBCheckBox
       Left = 24
@@ -70,6 +75,8 @@ object Frm_AccessPermission: TFrm_AccessPermission
       DataField = 'CoachBuildDataSheet'
       DataSource = DM_DBConnection.DS_AccessPermission
       TabOrder = 2
+      ValueChecked = 'T'
+      ValueUnchecked = 'F'
     end
     object DBCB_UserRegistration: TDBCheckBox
       Left = 24
@@ -80,6 +87,8 @@ object Frm_AccessPermission: TFrm_AccessPermission
       DataField = 'UserRegistration'
       DataSource = DM_DBConnection.DS_AccessPermission
       TabOrder = 3
+      ValueChecked = 'T'
+      ValueUnchecked = 'F'
     end
     object DBCB_AccessPermission: TDBCheckBox
       Left = 24
@@ -90,6 +99,8 @@ object Frm_AccessPermission: TFrm_AccessPermission
       DataField = 'AccessPermition'
       DataSource = DM_DBConnection.DS_AccessPermission
       TabOrder = 4
+      ValueChecked = 'T'
+      ValueUnchecked = 'F'
     end
     object DBCB_CoachSchedule: TDBCheckBox
       Left = 24
@@ -100,6 +111,8 @@ object Frm_AccessPermission: TFrm_AccessPermission
       DataField = 'CoachRegistration'
       DataSource = DM_DBConnection.DS_AccessPermission
       TabOrder = 5
+      ValueChecked = 'T'
+      ValueUnchecked = 'F'
     end
     object DBCB_CoachBuildChallenge: TDBCheckBox
       Left = 24
@@ -110,6 +123,8 @@ object Frm_AccessPermission: TFrm_AccessPermission
       DataField = 'CoachBuildChallenge'
       DataSource = DM_DBConnection.DS_AccessPermission
       TabOrder = 6
+      ValueChecked = 'T'
+      ValueUnchecked = 'F'
     end
     object DBCB_StudentChallenge: TDBCheckBox
       Left = 24
@@ -120,6 +135,8 @@ object Frm_AccessPermission: TFrm_AccessPermission
       DataField = 'StudentChallenge'
       DataSource = DM_DBConnection.DS_AccessPermission
       TabOrder = 7
+      ValueChecked = 'T'
+      ValueUnchecked = 'F'
     end
     object DBCB_StudentRegistration: TDBCheckBox
       Left = 24
@@ -130,6 +147,8 @@ object Frm_AccessPermission: TFrm_AccessPermission
       DataField = 'StudentRegistration'
       DataSource = DM_DBConnection.DS_AccessPermission
       TabOrder = 8
+      ValueChecked = 'T'
+      ValueUnchecked = 'F'
     end
   end
   object DBE_Description: TDBEdit
