@@ -1,11 +1,11 @@
 object Frm_StudentRegistration: TFrm_StudentRegistration
-  Left = 411
-  Top = 75
+  Left = 594
+  Top = 122
   AutoSize = True
   Caption = 'Student Registration'
   ClientHeight = 911
   ClientWidth = 809
-  Color = clBtnFace
+  Color = clMoneyGreen
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
   Font.Height = -11

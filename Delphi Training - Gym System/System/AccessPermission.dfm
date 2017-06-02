@@ -1,10 +1,10 @@
 object Frm_AccessPermission: TFrm_AccessPermission
-  Left = 713
-  Top = 366
+  Left = 792
+  Top = 305
   Caption = 'User Access Permission'
   ClientHeight = 518
   ClientWidth = 389
-  Color = clBtnFace
+  Color = clMoneyGreen
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
   Font.Height = -11
@@ -176,6 +176,7 @@ object Frm_AccessPermission: TFrm_AccessPermission
     Top = 311
     Width = 377
     Height = 203
+    Color = clMoneyGreen
     DataSource = DM_DBConnection.DS_AccessPermission
     ReadOnly = True
     TabOrder = 3

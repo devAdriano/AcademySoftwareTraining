@@ -1,16 +1,17 @@
 object Frm_UserRegistration: TFrm_UserRegistration
-  Left = 0
-  Top = 0
+  Left = 732
+  Top = 305
   Caption = 'User Registration'
   ClientHeight = 453
   ClientWidth = 522
-  Color = clBtnFace
+  Color = clMoneyGreen
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
   Font.Height = -11
   Font.Name = 'Tahoma'
   Font.Style = []
   OldCreateOrder = False
+  Position = poDesigned
   OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13

@@ -1,16 +1,17 @@
 object Frm_BuildTraining: TFrm_BuildTraining
-  Left = 0
-  Top = 0
+  Left = 633
+  Top = 122
   Caption = 'Training Builder'
   ClientHeight = 836
   ClientWidth = 683
-  Color = clBtnFace
+  Color = clMoneyGreen
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
   Font.Height = -11
   Font.Name = 'Tahoma'
   Font.Style = []
   OldCreateOrder = False
+  Position = poDesigned
   OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13
@@ -88,7 +89,7 @@ object Frm_BuildTraining: TFrm_BuildTraining
       end
       object DBN_TrainingControl: TDBNavigator
         Left = 588
-        Top = 4
+        Top = 0
         Width = 79
         Height = 310
         DataSource = DM_DBConnection.DS_Training
@@ -113,12 +114,15 @@ object Frm_BuildTraining: TFrm_BuildTraining
         Width = 585
         Height = 112
         Caption = 'Start Data '
+        Color = clMoneyGreen
         Enabled = False
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWindowText
         Font.Height = -13
         Font.Name = 'Tahoma'
         Font.Style = [fsBold, fsItalic]
+        ParentBackground = False
+        ParentColor = False
         ParentFont = False
         TabOrder = 2
         object Lbl_Equipament: TLabel
@@ -162,16 +166,19 @@ object Frm_BuildTraining: TFrm_BuildTraining
       end
       object GB_TrainingSeries: TGroupBox
         Left = -3
-        Top = 148
+        Top = 136
         Width = 585
-        Height = 166
+        Height = 178
         Caption = 'Training Series '
+        Color = clMoneyGreen
         Enabled = False
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWindowText
         Font.Height = -13
         Font.Name = 'Tahoma'
         Font.Style = [fsBold, fsItalic]
+        ParentBackground = False
+        ParentColor = False
         ParentFont = False
         TabOrder = 3
         object Label3: TLabel
@@ -361,16 +368,19 @@ object Frm_BuildTraining: TFrm_BuildTraining
         TabOrder = 0
       end
       object GroupBox2: TGroupBox
-        Left = 3
+        Left = 0
         Top = 48
-        Width = 446
+        Width = 449
         Height = 89
         Caption = 'Schedule '
+        Color = clMoneyGreen
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWindowText
         Font.Height = -13
         Font.Name = 'Tahoma'
         Font.Style = [fsBold, fsItalic]
+        ParentBackground = False
+        ParentColor = False
         ParentFont = False
         TabOrder = 1
         object Label13: TLabel
@@ -425,16 +435,19 @@ object Frm_BuildTraining: TFrm_BuildTraining
         end
       end
       object GroupBox3: TGroupBox
-        Left = 3
-        Top = 143
-        Width = 446
-        Height = 98
+        Left = 0
+        Top = 136
+        Width = 449
+        Height = 105
         Caption = 'Training Series '
+        Color = clMoneyGreen
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWindowText
         Font.Height = -13
         Font.Name = 'Tahoma'
         Font.Style = [fsBold, fsItalic]
+        ParentBackground = False
+        ParentColor = False
         ParentFont = False
         TabOrder = 2
         object Label15: TLabel
@@ -514,10 +527,10 @@ object Frm_BuildTraining: TFrm_BuildTraining
         end
       end
       object DBG_StudentChallenges: TDBGrid
-        Left = 4
-        Top = 399
-        Width = 663
-        Height = 315
+        Left = 0
+        Top = 396
+        Width = 667
+        Height = 318
         DataSource = DM_DBConnection.DS_StudentChallenges
         TabOrder = 3
         TitleFont.Charset = DEFAULT_CHARSET
@@ -540,7 +553,7 @@ object Frm_BuildTraining: TFrm_BuildTraining
       end
       object Btn_ProveChallenge: TButton
         Left = 455
-        Top = 346
+        Top = 282
         Width = 130
         Height = 47
         Caption = 'Prove Challenge'
@@ -566,10 +579,11 @@ object Frm_BuildTraining: TFrm_BuildTraining
         OnClick = Btn_NextChallengeClick
       end
       object DBM_Obs: TDBMemo
-        Left = 3
-        Top = 247
-        Width = 446
-        Height = 143
+        Left = 0
+        Top = 240
+        Width = 449
+        Height = 150
+        Color = clMoneyGreen
         DataField = 'Obs'
         DataSource = DM_DBConnection.DS_Challenge
         TabOrder = 8

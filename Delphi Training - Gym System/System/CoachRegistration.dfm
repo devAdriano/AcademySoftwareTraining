@@ -1,10 +1,10 @@
 object Frm_CoachRegistration: TFrm_CoachRegistration
-  Left = 480
-  Top = 150
+  Left = 554
+  Top = 102
   Caption = 'Coach Registration'
   ClientHeight = 956
   ClientWidth = 835
-  Color = clBtnFace
+  Color = clMoneyGreen
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
   Font.Height = -11
@@ -25,17 +25,20 @@ object Frm_CoachRegistration: TFrm_CoachRegistration
     object TabSheet1: TTabSheet
       Caption = 'Registration'
       object GB_CoachPersonal: TGroupBox
-        Left = 8
-        Top = 8
-        Width = 737
+        Left = 0
+        Top = 0
+        Width = 822
         Height = 137
         Caption = 'Personal '
+        Color = clMoneyGreen
         Enabled = False
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWindowText
         Font.Height = -16
         Font.Name = 'Tahoma'
         Font.Style = [fsBold, fsItalic]
+        ParentBackground = False
+        ParentColor = False
         ParentFont = False
         TabOrder = 0
         object Label1: TLabel
@@ -163,10 +166,10 @@ object Frm_CoachRegistration: TFrm_CoachRegistration
         end
       end
       object DBN_Coach: TDBNavigator
-        Left = 753
-        Top = 187
+        Left = 758
+        Top = 143
         Width = 64
-        Height = 440
+        Height = 580
         DataSource = DM_DBConnection.DS_Coach
         Kind = dbnVertical
         TabOrder = 1
@@ -174,17 +177,20 @@ object Frm_CoachRegistration: TFrm_CoachRegistration
         OnExit = DBN_CoachExit
       end
       object GB_CoachAddress: TGroupBox
-        Left = 10
-        Top = 151
-        Width = 737
-        Height = 161
+        Left = 0
+        Top = 136
+        Width = 752
+        Height = 176
         Caption = 'Address Data '
+        Color = clMoneyGreen
         Enabled = False
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWindowText
         Font.Height = -16
         Font.Name = 'Tahoma'
         Font.Style = [fsBold, fsItalic]
+        ParentBackground = False
+        ParentColor = False
         ParentFont = False
         TabOrder = 2
         object Label5: TLabel
@@ -357,17 +363,20 @@ object Frm_CoachRegistration: TFrm_CoachRegistration
         end
       end
       object GB_CoachLabor: TGroupBox
-        Left = 10
-        Top = 318
-        Width = 737
-        Height = 180
+        Left = 0
+        Top = 312
+        Width = 752
+        Height = 186
         Caption = 'Labor Information '
+        Color = clMoneyGreen
         Enabled = False
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWindowText
         Font.Height = -16
         Font.Name = 'Tahoma'
         Font.Style = [fsBold, fsItalic]
+        ParentBackground = False
+        ParentColor = False
         ParentFont = False
         TabOrder = 3
         object Label11: TLabel
@@ -540,9 +549,9 @@ object Frm_CoachRegistration: TFrm_CoachRegistration
         end
       end
       object DBG_Coach: TDBGrid
-        Left = 10
+        Left = 3
         Top = 734
-        Width = 812
+        Width = 819
         Height = 183
         DataSource = DM_DBConnection.DS_Coach
         ReadOnly = True
@@ -554,17 +563,20 @@ object Frm_CoachRegistration: TFrm_CoachRegistration
         TitleFont.Style = []
       end
       object GB_SystemUser: TGroupBox
-        Left = 10
-        Top = 504
-        Width = 737
-        Height = 224
+        Left = 0
+        Top = 496
+        Width = 752
+        Height = 232
         Caption = 'System User '
+        Color = clMoneyGreen
         Enabled = False
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWindowText
         Font.Height = -16
         Font.Name = 'Tahoma'
         Font.Style = [fsBold, fsItalic]
+        ParentBackground = False
+        ParentColor = False
         ParentFont = False
         TabOrder = 5
         object Label14: TLabel
@@ -671,8 +683,8 @@ object Frm_CoachRegistration: TFrm_CoachRegistration
       Caption = 'Work Schedule'
       ImageIndex = 1
       object Label15: TLabel
-        Left = 8
-        Top = 10
+        Left = 11
+        Top = -2
         Width = 175
         Height = 19
         Caption = 'Schedule Description '
@@ -685,7 +697,7 @@ object Frm_CoachRegistration: TFrm_CoachRegistration
       end
       object DBE_ScheduleDescription: TDBEdit
         Left = 189
-        Top = 8
+        Top = 0
         Width = 555
         Height = 21
         DataField = 'Description'
@@ -694,17 +706,20 @@ object Frm_CoachRegistration: TFrm_CoachRegistration
         TabOrder = 0
       end
       object GB_WSData: TGroupBox
-        Left = 8
-        Top = 35
-        Width = 736
-        Height = 86
+        Left = 0
+        Top = 23
+        Width = 744
+        Height = 98
         Caption = 'Insert Work Schedule '
+        Color = clMoneyGreen
         Enabled = False
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWindowText
         Font.Height = -13
         Font.Name = 'Tahoma'
         Font.Style = [fsBold, fsItalic]
+        ParentBackground = False
+        ParentColor = False
         ParentFont = False
         TabOrder = 1
         object Label16: TLabel
@@ -741,17 +756,20 @@ object Frm_CoachRegistration: TFrm_CoachRegistration
         end
       end
       object GB_WeekDays: TGroupBox
-        Left = 8
-        Top = 127
-        Width = 736
-        Height = 201
+        Left = 0
+        Top = 119
+        Width = 744
+        Height = 217
         Caption = 'Insert Work Week Days'
+        Color = clMoneyGreen
         Enabled = False
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWindowText
         Font.Height = -13
         Font.Name = 'Tahoma'
         Font.Style = [fsBold, fsItalic]
+        ParentBackground = False
+        ParentColor = False
         ParentFont = False
         TabOrder = 2
         object DBCB_Sunday: TDBCheckBox
@@ -845,18 +863,18 @@ object Frm_CoachRegistration: TFrm_CoachRegistration
       end
       object DBN_WorkSchedule: TDBNavigator
         Left = 750
-        Top = 3
+        Top = -2
         Width = 72
-        Height = 320
+        Height = 330
         DataSource = DM_DBConnection.DS_WorkSchedule
         Kind = dbnVertical
         TabOrder = 3
         OnClick = DBN_WorkScheduleClick
       end
       object DBG_WorkSchedule: TDBGrid
-        Left = 8
+        Left = 0
         Top = 334
-        Width = 814
+        Width = 822
         Height = 583
         DataSource = DM_DBConnection.DS_WorkSchedule
         ReadOnly = True

@@ -1,16 +1,17 @@
 object Frm_StudentReport: TFrm_StudentReport
-  Left = 0
-  Top = 0
+  Left = 396
+  Top = 163
   Caption = 'Student Report'
   ClientHeight = 779
   ClientWidth = 1179
-  Color = clBtnFace
+  Color = clMoneyGreen
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
   Font.Height = -11
   Font.Name = 'Tahoma'
   Font.Style = []
   OldCreateOrder = False
+  Position = poDesigned
   OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13

@@ -10,16 +10,15 @@ type
   TFrm_MainMenu = class(TForm)
     GB_CoachMenu: TGroupBox;
     GB_StudentMenu: TGroupBox;
-    Btn_CoachRegistration: TButton;
-    Btn_BuildTraining: TButton;
     GB_System: TGroupBox;
-    Btn_StudentRegistration: TButton;
-    Btn_StudentTraining: TButton;
-    Btn_UserManagement: TButton;
-    Btn_UserPermissions: TButton;
-    Btn_StudentReport: TButton;
-    Btn_Logout: TButton;
-    BitBtn1: TBitBtn;
+    Btn_UserPermissions: TBitBtn;
+    Btn_CoachRegistration: TBitBtn;
+    Btn_BuildTraining: TBitBtn;
+    Btn_StudentRegistration: TBitBtn;
+    Btn_StudentTraining: TBitBtn;
+    Btn_StudentReport: TBitBtn;
+    Btn_UserManagement: TBitBtn;
+    Btn_Logout: TBitBtn;
     procedure FormShow(Sender: TObject);
     procedure Btn_CoachRegistrationClick(Sender: TObject);
     procedure Btn_StudentRegistrationClick(Sender: TObject);

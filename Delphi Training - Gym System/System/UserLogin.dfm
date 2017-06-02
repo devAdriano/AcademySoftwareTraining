@@ -1,5 +1,5 @@
 object Frm_UserLogin: TFrm_UserLogin
-  Left = 732
+  Left = 812
   Top = 447
   AutoSize = True
   BorderIcons = []
@@ -24,11 +24,14 @@ object Frm_UserLogin: TFrm_UserLogin
     Width = 361
     Height = 180
     Caption = 'Login '
+    Color = clMoneyGreen
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -21
     Font.Name = 'Tahoma'
     Font.Style = [fsBold, fsItalic]
+    ParentBackground = False
+    ParentColor = False
     ParentFont = False
     TabOrder = 0
     object Label1: TLabel
